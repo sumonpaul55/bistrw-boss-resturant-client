@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import logo from "../assets/logo.png"
 const Navbar = () => {
     const nablist = <>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/menu">Menu</Link></li>
         <li><Link>Submenu 1</Link></li>
         <li><Link>Submenu 2</Link></li>
     </>
@@ -19,7 +21,9 @@ const Navbar = () => {
                             {nablist}
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost normal-case text-xl">Bistro Boss</Link>
+                    <Link to="/" className="btn btn-ghost normal-case text-xl">
+                        <img src={logo} alt="logo" className='w-12' />
+                    </Link>
 
                 </div>
                 <div className="navbar-center hidden lg:flex">

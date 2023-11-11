@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PageTitle from '../../shared/PageTitle';
+import PageTitle from '../shared/footer/PageTitle';
 import MenuItems from '../shared/footer/MenuItems';
 
 const Ourmenu = () => {
