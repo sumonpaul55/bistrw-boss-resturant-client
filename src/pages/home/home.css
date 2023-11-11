@@ -1,0 +1,14 @@
+@media (min-width: 768px) {
+    .axis-horizontal ul li img {
+        height: 85vh !important;
+    }
+}
+
+.banner .carousel .thumbs-wrapper .thumbs {
+    display: flex;
+    justify-content: center;
+}
+
+.featured {
+    background-image: url("../../assets/home/featured.jpg")
+}
