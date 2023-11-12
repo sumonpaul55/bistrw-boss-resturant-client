@@ -3,6 +3,7 @@ import HelmetProvider from '../shared/HelmetProvider';
 import Cover from '../shared/Cover';
 import bgImg from "../../assets/menu/banner3.jpg"
 const Menu = () => {
+
     return (
         <main>
             <HelmetProvider pageTitle="Menu"></HelmetProvider>

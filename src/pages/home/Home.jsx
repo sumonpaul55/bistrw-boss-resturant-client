@@ -2,7 +2,7 @@ import React from "react";
 import Banner from "./Banner";
 import "./home.css"
 import Category from "./Category";
-import Ourmenu from "./Ourmenu";
+import PopularMenu from "./PopularMenu";
 import Featured from "./Featured";
 import Testimonial from "./Testimonial";
 
@@ -14,7 +14,7 @@ const Home = () => {
                 <Category></Category>
             </div>
             <dir className="mb-5">
-                <Ourmenu></Ourmenu>
+                <PopularMenu></PopularMenu>
             </dir>
             <Featured></Featured>
             <Testimonial></Testimonial>

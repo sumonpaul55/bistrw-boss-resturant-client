@@ -2,7 +2,6 @@ import React from 'react';
 
 const MenuItems = ({ menuItems }) => {
     const { name, image, price } = menuItems
-    console.log(menuItems)
     return (
         <div className='flex items-start gap-4'>
             <img src={image} alt="" className='w-28 h-28 rounded-b-full rounded-r-full' />
