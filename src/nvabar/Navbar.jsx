@@ -6,8 +6,7 @@ const Navbar = () => {
     const nablist = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/menu">Menu</Link></li>
-        <li><Link>Submenu 1</Link></li>
-        <li><Link>Submenu 2</Link></li>
+        <li><Link to="/order">Order Food</Link></li>
     </>
     return (
         <nav className='absolute z-10 left-0 top-0 right-0 bg-black bg-opacity-30 text-white font-semibold'>
