@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png"
+
 const Navbar = () => {
     const nablist = <>
         <li><Link to="/">Home</Link></li>

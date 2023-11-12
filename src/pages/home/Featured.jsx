@@ -1,5 +1,5 @@
 import React from 'react';
-import PageTitle from '../shared/footer/PageTitle';
+import PageTitle from '../shared/PageTitle';
 import features from "../../assets/home/featured.jpg"
 const Featured = () => {
     return (

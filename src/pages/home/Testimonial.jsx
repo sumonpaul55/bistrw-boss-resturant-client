@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
-import PageTitle from '../shared/footer/PageTitle';
+import PageTitle from '../shared/PageTitle';
 import { useState } from 'react';
 import { Rating } from '@smastrom/react-rating'
 import { Swiper, SwiperSlide } from 'swiper/react';
