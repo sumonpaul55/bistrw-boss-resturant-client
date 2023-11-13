@@ -15,17 +15,17 @@ const Testimonial = () => {
     const [rating, setRating] = useState(4) // Initial value
 
     useEffect(() => {
-        fetch("reviews.json")
+        fetch("http://localhost:5000/reviews")
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
-    console.log(reviews)
+    // console.log(reviews)
     return (
         <section className='py-20'>
             <div className="container mx-auto">
                 <PageTitle heading="---What Our Clients Say---" subHeading="TESTIMONIALS"></PageTitle>
                 <div className='text-center mt-20'>
-                    <Swiper navigation={true} modules={[Navigation]} loop={Infinity}>
+                    <Swiper navigation={true} modules={[Navigation]}>
                         {
                             reviews.map((items, idx) => <SwiperSlide key={idx} >
                                 <div className='flex justify-center flex-col items-center gap-3 px-10 md:px-20 lg:max-w-[70%] mx-auto'>

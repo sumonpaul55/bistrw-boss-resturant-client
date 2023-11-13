@@ -1,7 +1,7 @@
-
 import React from 'react';
 import MenuItems from '../../shared/MenuItems';
 import Cover from "../../shared/Cover"
+import { Link } from 'react-router-dom';
 
 
 const MenuCategory = ({ items, title, coverImg, coverDesc }) => {
@@ -17,7 +17,7 @@ const MenuCategory = ({ items, title, coverImg, coverDesc }) => {
                     }
                 </div>
                 <div className='text-center mb-14'>
-                    <button className='border-0 border-b-4 border-black btn bg-transparent'>ORDER YOUR FAVOURITE FOOD</button>
+                    <Link to={`/order/${title}`}><button className='border-0 border-b-4 border-black btn bg-transparent'>ORDER YOUR FAVOURITE FOOD</button></Link>
                 </div>
             </div>
         </div>

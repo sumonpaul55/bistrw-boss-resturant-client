@@ -1,0 +1,8 @@
+.react-tabs__tab-list {
+    border: 0;
+    text-transform: uppercase !important;
+}
+
+.react-tabs__tab--selected {
+    border: 0;
+}

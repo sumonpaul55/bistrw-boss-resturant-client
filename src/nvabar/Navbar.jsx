@@ -6,7 +6,8 @@ const Navbar = () => {
     const nablist = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/menu">Menu</Link></li>
-        <li><Link to="/order">Order Food</Link></li>
+        <li><Link to={`/order/salad`}>Order Food</Link></li>
+        <li><Link to={`/login`}>Login</Link></li>
     </>
     return (
         <nav className='absolute z-10 left-0 top-0 right-0 bg-black bg-opacity-30 text-white font-semibold'>
@@ -24,7 +25,6 @@ const Navbar = () => {
                     <Link to="/" className="btn btn-ghost normal-case text-xl">
                         <img src={logo} alt="logo" className='w-12' />
                     </Link>
-
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
