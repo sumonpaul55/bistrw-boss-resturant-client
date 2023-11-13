@@ -18,8 +18,13 @@ const Navbar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/menu">Menu</Link></li>
         <li><Link to={`/order/salad`}>Order Food</Link></li>
+
         {
-            !loading && user ? <button onClick={handleLogout}>Logout</button> :
+            !loading && user ? <div className='mx-3 flex gap-1 items-center'>
+                <img src={user?.photoURL} referrerPolicy='no-referrer' className='w-8 h-8 rounded-full' alt="" />
+                <button onClick={handleLogout}>Logout</button>
+            </div>
+                :
                 <li><Link to={`/login`}>Login</Link></li>
         }
     </>
@@ -45,6 +50,7 @@ const Navbar = () => {
                         {/* nav list */}
                         {nablist}
                     </ul>
+
                 </div>
                 <div className="navbar-end">
 

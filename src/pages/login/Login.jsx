@@ -10,6 +10,7 @@ const Login = () => {
     const { signIn } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
+    const fromLogin = location?.state?.from?.pathname || "/";
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -20,7 +21,7 @@ const Login = () => {
             .then(res => {
                 const user = res.user
                 user && toast(`Welcome back ${user?.displayName}`)
-                navigate(location.state ? location.state : "/")
+                navigate(fromLogin, { replace: true })
             })
             .catch(err => {
                 console.log(err)

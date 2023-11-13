@@ -9,7 +9,7 @@ import { updateProfile } from 'firebase/auth';
 const Signup = () => {
     const { createUser } = useContext(AuthContext)
 
-    const { register, handleSubmit, formState: { errors }, } = useForm()
+    const { register, handleSubmit, reset, formState: { errors }, } = useForm()
     const navigate = useNavigate()
     const onSubmit = data => {
         // console.log(data.name, data.email, data.password)
@@ -17,12 +17,14 @@ const Signup = () => {
         createUser(data.email, data.password)
             .then(res => {
                 updateProfile(res.user, {
-                    displayName: data.name
+                    displayName: data.name,
+                    photoURL: data.photourl
                 }).then().catch()
                 toast('You have signed up successfully', {
                     position: "bottom-right",
                     autoClose: 2000
                 });
+                reset()
                 navigate("/")
             }).catch(err => {
                 toast(`${err.message}`, {
@@ -48,21 +50,29 @@ const Signup = () => {
                                     <label className="label">
                                         <span className="label-text">Name</span>
                                     </label>
-                                    <input type="text" defaultValue="name" {...register("name", { required: true })} placeholder="Enater your name" className="input input-bordered" />
+                                    <input type="text" defaultValue="" {...register("name", { required: true })} placeholder="Enater your name" className="input input-bordered" />
                                     {errors.name && <span className='text-red-600'>Name field is required</span>}
+                                </div>
+                                {/* photo url */}
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Photo url</span>
+                                    </label>
+                                    <input type="text" defaultValue="" {...register("photourl", { required: true })} placeholder="Enater your photo url" className="input input-bordered" />
+                                    {errors.photourl && <span className='text-red-600'>photourl must required</span>}
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input required type="email" defaultValue="email" {...register("email", { required: true })} name='email' placeholder="email" className="input input-bordered" />
+                                    <input required type="email" defaultValue="" {...register("email", { required: true })} name='email' placeholder="email" className="input input-bordered" />
                                     {errors.email && <span className='text-red-600'>Email must required</span>}
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="password" name='password' defaultValue="password" {...register("password", { required: true, minLength: 6, maxLength: 20, pattern: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/ })} placeholder="password" className="input input-bordered" />
+                                    <input type="password" name='password' defaultValue="" {...register("password", { required: true, minLength: 6, maxLength: 20, pattern: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/ })} placeholder="password" className="input input-bordered" />
                                     {errors.password?.type === "required" && <span className='text-red-600'>Password is 6 character required</span>}
                                     {errors.password?.type === "minLength" && <span className='text-red-600'>Password is 6 character</span>}
                                     {errors.password?.type === "maxLength" && <span className='text-red-600'>Password must be less than 20 character</span>}
