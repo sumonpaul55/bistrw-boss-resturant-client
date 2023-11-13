@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png"
+import { AuthContext } from '../AuthProvider';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
+    const { user, loading, logOut } = useContext(AuthContext)
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                toast("you have Logged Out succesfully", { position: "bottom-right", autoClose: 2000 })
+            }).catch(err => {
+                toast(err)
+            })
+    }
     const nablist = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/menu">Menu</Link></li>
         <li><Link to={`/order/salad`}>Order Food</Link></li>
-        <li><Link to={`/login`}>Login</Link></li>
+        {
+            !loading && user ? <button onClick={handleLogout}>Logout</button> :
+                <li><Link to={`/login`}>Login</Link></li>
+        }
     </>
     return (
         <nav className='absolute z-10 left-0 top-0 right-0 bg-black bg-opacity-30 text-white font-semibold'>

@@ -5,7 +5,7 @@ import Navbar from '../nvabar/Navbar';
 
 const MainLayout = () => {
     const location = useLocation();
-    const controlHeaderFooter = location.pathname.includes("login")
+    const controlHeaderFooter = location.pathname.includes("login") || location.pathname.includes("signUp")
     return (
         <>
             {controlHeaderFooter || <Navbar></Navbar>}
