@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png"
-import { AuthContext } from '../AuthProvider';
+import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
+import { BsFillCartPlusFill } from "react-icons/bs"
 
 const Navbar = () => {
     const { user, loading, logOut } = useContext(AuthContext)
@@ -15,9 +16,17 @@ const Navbar = () => {
             })
     }
     const nablist = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/menu">Menu</Link></li>
-        <li><Link to={`/order/salad`}>Order Food</Link></li>
+        <li><Link className='hover:text-slate-500' to="/">Home</Link></li>
+        <li><Link className='hover:text-slate-500' to="/menu">Menu</Link></li>
+        <li><Link className='hover:text-slate-500' to={`/order/salad`}>Order Food</Link></li>
+        <li>
+            <Link to={`/`} className='hover:bg-none hover:text-inherit'>
+                <button className="flex">
+                    <span className='text-xl'><BsFillCartPlusFill /></span>
+                    <div className="badge px-1 badge-secondary">+0</div>
+                </button>
+            </Link>
+        </li>
 
         {
             !loading && user ? <div className='mx-3 flex gap-1 items-center'>
@@ -25,7 +34,7 @@ const Navbar = () => {
                 <button onClick={handleLogout}>Logout</button>
             </div>
                 :
-                <li><Link to={`/login`}>Login</Link></li>
+                <li><Link className='hover:text-slate-500' to={`/login`}>Login</Link></li>
         }
     </>
     return (

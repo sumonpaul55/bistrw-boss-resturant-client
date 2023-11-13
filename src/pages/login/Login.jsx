@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
-import { AuthContext } from '../../AuthProvider';
+import { AuthContext } from '../../provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import HelmetProvider from '../shared/HelmetProvider';
 import { toast } from 'react-toastify';

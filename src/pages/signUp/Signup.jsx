@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import HelmetProvider from '../shared/HelmetProvider';
-import { AuthContext } from '../../AuthProvider';
+import { AuthContext } from '../../provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { updateProfile } from 'firebase/auth';
 
