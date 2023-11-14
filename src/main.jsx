@@ -7,13 +7,17 @@ import { HelmetProvider } from 'react-helmet-async'
 import AuthProvider from './provider/AuthProvider.jsx'
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+const client = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <HelmetProvider>
-        <RouterProvider router={routers}></RouterProvider>
-      </HelmetProvider>
+      <QueryClientProvider client={client}>
+        <HelmetProvider>
+          <RouterProvider router={routers}></RouterProvider>
+        </HelmetProvider>
+      </QueryClientProvider>
     </AuthProvider>
     <ToastContainer />
   </React.StrictMode>,

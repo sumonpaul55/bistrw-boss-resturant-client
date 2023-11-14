@@ -4,9 +4,11 @@ import logo from "../assets/logo.png"
 import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { BsFillCartPlusFill } from "react-icons/bs"
+import useCarts from '../hooks/useCarts';
 
 const Navbar = () => {
     const { user, loading, logOut } = useContext(AuthContext)
+    const [cart] = useCarts();
     const handleLogout = () => {
         logOut()
             .then(() => {
@@ -23,7 +25,7 @@ const Navbar = () => {
             <Link to={`/`} className='hover:bg-none hover:text-inherit'>
                 <button className="flex">
                     <span className='text-xl'><BsFillCartPlusFill /></span>
-                    <div className="badge px-1 badge-secondary">+0</div>
+                    <div className="badge px-1 badge-secondary">+{cart.length}</div>
                 </button>
             </Link>
         </li>

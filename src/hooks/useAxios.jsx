@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const url = "http://localhost:5000"
-export const axiosSecure = axios.create({
+const axiosSecure = axios.create({
     baseURL: url,
     withCredentials: true
 })
