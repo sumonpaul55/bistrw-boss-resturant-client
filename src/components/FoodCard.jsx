@@ -2,14 +2,17 @@ import React, { } from 'react';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useAxios from '../hooks/useAxios';
+import { toast } from 'react-toastify';
 
 const FoodCard = ({ FoodCardData }) => {
     const { name, image, price, recipe, category, _id } = FoodCardData
     const navigate = useNavigate();
     const location = useLocation();
     const { user } = useAuth();
+    const axiosSecure = useAxios()
     // console.log(FoodCardData)
-    const handleAddToCart = food => {
+    const handleAddToCart = () => {
         if (user && user?.email) {
             const cartItems = {
                 menuItemId: _id,
@@ -18,6 +21,18 @@ const FoodCard = ({ FoodCardData }) => {
                 image,
                 price
             }
+            axiosSecure.post('/carts', cartItems)
+                .then(res => {
+                    res.data.insertedId && toast(`${name} Added succefully`, {
+                        autoClose: 2000,
+                        position: "bottom-center"
+                    })
+                }).catch(err => {
+                    toast(`${err}`, {
+                        autoClose: 2000,
+                        position: "bottom-center"
+                    })
+                })
 
         }
         else {
