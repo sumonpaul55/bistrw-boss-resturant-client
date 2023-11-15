@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxios from '../hooks/useAxios';
 import { toast } from 'react-toastify';
+import useCarts from '../hooks/useCarts';
 
 const FoodCard = ({ FoodCardData }) => {
     const { name, image, price, recipe, category, _id } = FoodCardData
@@ -11,6 +12,7 @@ const FoodCard = ({ FoodCardData }) => {
     const location = useLocation();
     const { user } = useAuth();
     const axiosSecure = useAxios()
+    const [, refetch] = useCarts()
     // console.log(FoodCardData)
     const handleAddToCart = () => {
         if (user && user?.email) {
@@ -27,6 +29,8 @@ const FoodCard = ({ FoodCardData }) => {
                         autoClose: 2000,
                         position: "bottom-center"
                     })
+                    // refetch the cart
+                    refetch()
                 }).catch(err => {
                     toast(`${err}`, {
                         autoClose: 2000,
@@ -60,7 +64,7 @@ const FoodCard = ({ FoodCardData }) => {
                 <p>Category: {category}</p>
                 <p className='bg-black px-4 md:text-xl py-1 text-white absolute top-5 right-5'>${price}</p>
                 <div className="card-actions justify-center">
-                    <button className="btn border-0 border-b-4 border-[#BB8506] text-[#BB8506] uppercase px-8" onClick={() => handleAddToCart(FoodCardData)}>Add to cart</button>
+                    <button className="btn border-0 border-b-4 border-[#BB8506] text-[#BB8506] uppercase px-8" onClick={handleAddToCart}>Add to cart</button>
                 </div>
             </div>
         </div>

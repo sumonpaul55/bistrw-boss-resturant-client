@@ -8,6 +8,8 @@ import Home from "../pages/home/Home"
 import Order from "../pages/order/Order";
 import Login from "../pages/login/Login";
 import Signup from "../pages/signUp/Signup";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../components/dashboard/cart/Cart";
 const routers = createBrowserRouter([
     {
         path: "/",
@@ -33,10 +35,18 @@ const routers = createBrowserRouter([
                 path: "signUp",
                 element: <Signup></Signup>
             }
-
-
         ]
     },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "/dashboard/cart",
+                element: <Cart></Cart>
+            }
+        ]
+    }
 ]);
 
 export default routers

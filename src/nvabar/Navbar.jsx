@@ -22,7 +22,7 @@ const Navbar = () => {
         <li><Link className='hover:text-slate-500' to="/menu">Menu</Link></li>
         <li><Link className='hover:text-slate-500' to={`/order/salad`}>Order Food</Link></li>
         <li>
-            <Link to={`/`} className='hover:bg-none hover:text-inherit'>
+            <Link to={`/dashboard/cart`} className='hover:bg-none hover:text-inherit'>
                 <button className="flex">
                     <span className='text-xl'><BsFillCartPlusFill /></span>
                     <div className="badge px-1 badge-secondary">+{cart.length}</div>
@@ -41,7 +41,7 @@ const Navbar = () => {
     </>
     return (
         <nav className='absolute z-10 left-0 top-0 right-0 bg-black bg-opacity-30 text-white font-semibold'>
-            <div className="navbar min-h-[auto] py-0">
+            <div className="navbar min-h-[auto] py-0 fixed top-0 bg-black bg-opacity-40">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
