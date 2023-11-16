@@ -5,27 +5,46 @@ import HelmetProvider from '../shared/HelmetProvider';
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { updateProfile } from 'firebase/auth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import SocialLogin from '../../components/socialLogin/SocialLogin';
 
 const Signup = () => {
-    const { createUser } = useContext(AuthContext)
 
+
+    const { createUser } = useContext(AuthContext)
+    const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, reset, formState: { errors }, } = useForm()
     const navigate = useNavigate()
+
+
+
     const onSubmit = data => {
         // console.log(data.name, data.email, data.password)
-
         createUser(data.email, data.password)
             .then(res => {
                 updateProfile(res.user, {
                     displayName: data.name,
                     photoURL: data.photourl
-                }).then().catch()
-                toast('You have signed up successfully', {
-                    position: "bottom-right",
-                    autoClose: 2000
-                });
-                reset()
-                navigate("/")
+                }).then(() => {
+                    // create user in the database
+                    const userInfo = {
+                        name: data?.name,
+                        email: data?.email
+                    }
+                    axiosPublic.post("/users", userInfo)
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                // console.log("user added to the data base")
+                                toast('You have signed up successfully', {
+                                    position: "bottom-right",
+                                    autoClose: 2000
+                                });
+                                reset()
+                                navigate("/")
+                            }
+                        })
+                }).catch()
+
             }).catch(err => {
                 toast(`${err.message}`, {
                     position: "bottom-right",
@@ -88,6 +107,7 @@ const Signup = () => {
                             </form>
                             <p className='text-center py-6'>Do you have an account? Please<Link to="/login" className='text-secondary font-bold text-xl'>Login</Link>
                             </p>
+                            <SocialLogin></SocialLogin>
                         </div>
                     </div>
                 </div>

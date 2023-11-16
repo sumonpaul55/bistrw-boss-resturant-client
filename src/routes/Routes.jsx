@@ -10,6 +10,7 @@ import Login from "../pages/login/Login";
 import Signup from "../pages/signUp/Signup";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../components/dashboard/cart/Cart";
+import PrivetRoute from "./PrivetRoute";
 const routers = createBrowserRouter([
     {
         path: "/",
@@ -39,7 +40,7 @@ const routers = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
         children: [
             {
                 path: "/dashboard/cart",

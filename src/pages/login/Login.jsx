@@ -4,6 +4,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import HelmetProvider from '../shared/HelmetProvider';
 import { toast } from 'react-toastify';
+import SocialLogin from '../../components/socialLogin/SocialLogin';
 const Login = () => {
     const captchRef = useRef(null);
     const [disabled, setDisabled] = useState(true)
@@ -11,6 +12,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const fromLogin = location?.state?.from?.pathname || "/";
+
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -24,7 +26,7 @@ const Login = () => {
                 navigate(fromLogin, { replace: true })
             })
             .catch(err => {
-                console.log(err)
+                toast(`${err}`)
             })
     }
     useEffect(() => {
@@ -38,12 +40,12 @@ const Login = () => {
         } else {
             setDisabled(true)
         }
-
     }
     return (
         <>
             <HelmetProvider pageTitle="login"></HelmetProvider>
-            <div className='container mx-auto'>login
+            <div className='container mx-auto'>
+                <h3 className='text-center text-xl md:text-3xl font-bold py-3 capitalize'>login</h3>
                 <div className="hero min-h-screen bg-base-200">
                     <div className="hero-content flex-col lg:flex-row">
                         <div className="text-center lg:text-left md:w-1/2">
@@ -83,6 +85,7 @@ const Login = () => {
                             </form>
                             <p className='text-center py-6'>Are You new here? Please<Link to="/signUp" className='text-secondary font-bold text-xl'>Register</Link>
                             </p>
+                            <SocialLogin></SocialLogin>
                         </div>
                     </div>
                 </div>

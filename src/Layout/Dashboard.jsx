@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaHome, FaCartArrowDown } from "react-icons/fa";
+import { FaHome, FaCartArrowDown, FaEnvelope } from "react-icons/fa";
 import { GiOilDrum } from "react-icons/gi";
 import { SiCodereview } from "react-icons/si";
 import { TbBookmarksFilled } from "react-icons/tb";
@@ -8,6 +8,9 @@ import { BiFoodMenu } from "react-icons/bi";
 import "./dashboard.css"
 
 const Dashboard = () => {
+    //TODO: get isadmin value from the database
+    const isAdmin = true;
+
     return (
         <main className='dashboard'>
             <div className="container mx-auto">
@@ -35,14 +38,19 @@ const Dashboard = () => {
                                 <TbBookmarksFilled />
                                 <NavLink to="">My Bookings</NavLink>
                             </li>
+                            {/* shared navlinks */}
                             <div className="divider"></div>
                             <li className='flex items-center gap-2 hover:text-white duration-150'>
                                 <FaCartArrowDown />
-                                <NavLink to="">Home</NavLink>
+                                <NavLink to="/">Home</NavLink>
                             </li>
                             <li className='flex items-center gap-2 hover:text-white duration-150'>
                                 <BiFoodMenu />
                                 <NavLink to="/">Menu</NavLink>
+                            </li>
+                            <li className='flex items-center gap-2 hover:text-white duration-150'>
+                                <FaEnvelope />
+                                <NavLink to="/contact">Contact</NavLink>
                             </li>
                         </ul>
                     </div>
