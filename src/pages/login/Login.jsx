@@ -22,7 +22,9 @@ const Login = () => {
         signIn(email, pass)
             .then(res => {
                 const user = res.user
-                user && toast(`Welcome back ${user?.displayName}`)
+                user && toast(`Welcome back ${user?.displayName}`, {
+                    autoClose: 2000
+                })
                 navigate(fromLogin, { replace: true })
             })
             .catch(err => {
