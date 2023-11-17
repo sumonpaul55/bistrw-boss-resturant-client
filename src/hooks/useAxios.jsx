@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
-import { toast } from 'react-toastify';
 const url = "http://localhost:5000"
 const axiosSecure = axios.create({
     baseURL: url,
@@ -27,7 +26,6 @@ const useAxios = () => {
             await logOut();
             navigate('/login');
         }
-        toast(`You are logged out for ${status}`)
         return Promise.reject(error);
     })
     return axiosSecure;

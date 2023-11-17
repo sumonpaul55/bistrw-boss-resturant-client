@@ -6,10 +6,11 @@ import { SiCodereview } from "react-icons/si";
 import { TbBookmarksFilled } from "react-icons/tb";
 import { BiFoodMenu } from "react-icons/bi";
 import "./dashboard.css"
+import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
     //TODO: get isadmin value from the database
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <main className='dashboard'>
