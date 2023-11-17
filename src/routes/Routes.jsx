@@ -11,6 +11,7 @@ import Signup from "../pages/signUp/Signup";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../components/dashboard/cart/Cart";
 import PrivetRoute from "./PrivetRoute";
+import AllUsers from "../Layout/allUsers/AllUsers";
 const routers = createBrowserRouter([
     {
         path: "/",
@@ -43,8 +44,13 @@ const routers = createBrowserRouter([
         element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
         children: [
             {
-                path: "/dashboard/cart",
+                path: "cart",
                 element: <Cart></Cart>
+            },
+            // admin routes
+            {
+                path: "users",
+                element: <AllUsers></AllUsers>
             }
         ]
     }
