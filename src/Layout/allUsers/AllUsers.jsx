@@ -42,7 +42,7 @@ const AllUsers = () => {
         });
     }
     const makeAdmin = user => {
-        axiosSecure.patch(`/users/adming/${user._id}`)
+        axiosSecure.patch(`/users/admin/${user._id}`)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     Swal.fire({ title: `${user.name} is Admin now`, icon: "success" })

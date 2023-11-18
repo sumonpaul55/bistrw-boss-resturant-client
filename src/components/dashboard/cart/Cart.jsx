@@ -43,7 +43,7 @@ const Cart = () => {
             <PageTitle heading="---My Cart---" subHeading="WANNA ADD MORE?"></PageTitle>
             <div className='flex justify-between mt-4'>
                 <h3 className="text-3xl font-semibold uppercase">Total Orders: {cart?.length}</h3>
-                <h3 className="text-3xl font-semibold uppercase">Total price: {totalPrice}</h3>
+                <h3 className="text-3xl font-semibold uppercase">Total price: {totalPrice.toFixed(2)}</h3>
                 <button className="text-3xl font-semibold uppercase bg-[#D1A054] p-2 text-white rounded-lg">Pay</button>
             </div>
             <div>

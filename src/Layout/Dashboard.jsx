@@ -27,7 +27,7 @@ const Dashboard = () => {
                                     </li>
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaUtensils />
-                                        <NavLink to="dashboard/add-items">Add items</NavLink>
+                                        <NavLink to="/dashboard/add-items">Add items</NavLink>
                                     </li>
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaList />
