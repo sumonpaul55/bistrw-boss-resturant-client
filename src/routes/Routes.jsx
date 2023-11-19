@@ -15,6 +15,7 @@ import AllUsers from "../Layout/allUsers/AllUsers";
 import AddItems from "../pages/dashboard/addItems/AddItems";
 import AdminRoute from "./AdminRoute";
 import MangaItems from "../pages/dashboard/manageItems/MangaItems";
+import UpdateItems from "../pages/dashboard/updateItems/UpdateItems";
 const routers = createBrowserRouter([
     {
         path: "/",
@@ -63,6 +64,11 @@ const routers = createBrowserRouter([
             {
                 path: "manage-items",
                 element: <AdminRoute> <MangaItems></MangaItems></AdminRoute>
+            },
+            {
+                path: "updateItems/:id",
+                loader: ({ params }) => fetch(`http://localhost:5000/updateItems/${params.id}`),
+                element: <AdminRoute><UpdateItems></UpdateItems></AdminRoute>
             }
         ]
     }

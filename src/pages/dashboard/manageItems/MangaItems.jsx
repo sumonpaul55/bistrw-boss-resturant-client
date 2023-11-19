@@ -4,11 +4,14 @@ import useMenu from '../../../hooks/useMenu';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxios from '../../../hooks/useAxios';
+import { Link } from 'react-router-dom';
 
 const MangaItems = () => {
-    const [menu] = useMenu()
+    const [menu, , refetch] = useMenu()
     const axiosSecure = useAxios()
     const handleDelete = item => {
+
+        console.log(item)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -21,11 +24,12 @@ const MangaItems = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/menu/${item._id}`)
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         if (res.data.deletedCount > 0) {
-                            Swal.fire(`${item.name} deleted successfull`)
+                            // console.log(item)
+                            Swal.fire(`${item?.price} deleted successfull`)
                         }
-                        // refetch()
+                        refetch()
                     })
             }
         });
@@ -33,7 +37,7 @@ const MangaItems = () => {
     return (
         <div>
             <PageTitle heading="---Hurry Up!---" subHeading="MANAGE ALL ITEMS"></PageTitle>
-            <h3 className='text-black font-semibold md:text-2xl'>Total items {menu.length}</h3>
+            <h3 className='text-black font-semibold md:text-2xl'>Total items {menu?.length}</h3>
             <div>
 
                 <div className="overflow-x-auto">
@@ -67,9 +71,11 @@ const MangaItems = () => {
                                         </td>
                                         <td className='font-bold'>{menuItem.price}</td>
                                         <td>
-                                            <button className='p-3 bg-red-700 rounded-xl'>
-                                                <FaEdit size={14} className='text-white' />
-                                            </button>
+                                            <Link to={`/dashboard/updateItems/${menuItem._id}`}>
+                                                <button className='p-3 bg-red-700 rounded-xl'>
+                                                    <FaEdit size={14} className='text-white' />
+                                                </button>
+                                            </Link>
                                         </td>
                                         <td>
                                             <button onClick={() => handleDelete(menuItem)} className='p-3 bg-red-700 rounded-xl'>

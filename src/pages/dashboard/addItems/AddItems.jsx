@@ -79,10 +79,8 @@ const AddItems = () => {
                     </label>
                     <input type="file" defaultValue="" {...register("image", { required: true })} placeholder='Choose File' className='p-2 bg-white' />
                 </div>
-                <div className='mt-8 md:px-5 bg-gradient-to-r from-indigo-500 cursor-pointer justify-center to-pink-500 py-2 hover:bg-gradient-to-l hover:text-white duration-200 rounded-md flex items-center gap-2 md:max-w-xs'>
-                    <input type="submit" value="add items" className="capitalize font-semibold" />
-                    <FaUtensils />
-                </div>
+                <input type="submit" value="add items" className="capitalize font-semibold inline-block mt-4 cursor-pointer" />
+                <FaUtensils className='inline ml-2' />
             </form >
         </div >
     );
