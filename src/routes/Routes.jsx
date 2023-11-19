@@ -14,6 +14,7 @@ import PrivetRoute from "./PrivetRoute";
 import AllUsers from "../Layout/allUsers/AllUsers";
 import AddItems from "../pages/dashboard/addItems/AddItems";
 import AdminRoute from "./AdminRoute";
+import MangaItems from "../pages/dashboard/manageItems/MangaItems";
 const routers = createBrowserRouter([
     {
         path: "/",
@@ -58,6 +59,10 @@ const routers = createBrowserRouter([
             {
                 path: "users",
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            {
+                path: "manage-items",
+                element: <AdminRoute> <MangaItems></MangaItems></AdminRoute>
             }
         ]
     }
