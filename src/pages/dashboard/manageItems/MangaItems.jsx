@@ -10,8 +10,7 @@ const MangaItems = () => {
     const [menu, , refetch] = useMenu()
     const axiosSecure = useAxios()
     const handleDelete = item => {
-
-        console.log(item)
+        // console.log(item)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -27,7 +26,7 @@ const MangaItems = () => {
                         // console.log(res.data)
                         if (res.data.deletedCount > 0) {
                             // console.log(item)
-                            Swal.fire(`${item?.price} deleted successfull`)
+                            Swal.fire(`${item?.name} deleted successfull`)
                         }
                         refetch()
                     })

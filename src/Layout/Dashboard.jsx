@@ -1,16 +1,20 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaHome, FaCartArrowDown, FaEnvelope, FaUtensils, FaList, FaUser, FaBook } from "react-icons/fa";
+import { FaHome, FaCartArrowDown, FaEnvelope, FaUtensils, FaList, FaUser, FaBook, FaCaretRight, FaCartPlus } from "react-icons/fa";
 import { GiOilDrum } from "react-icons/gi";
 import { SiCodereview } from "react-icons/si";
 import { TbBookmarksFilled } from "react-icons/tb";
 import { BiFoodMenu } from "react-icons/bi";
 import "./dashboard.css"
 import useAdmin from '../hooks/useAdmin';
+import Cart from '../components/dashboard/cart/Cart';
+import useCarts from '../hooks/useCarts';
 
 const Dashboard = () => {
     //TODO: get isadmin value from the database
     const [isAdmin] = useAdmin();
+    const [cart] = useCarts()
+
 
     return (
         <main className='dashboard'>
@@ -32,6 +36,10 @@ const Dashboard = () => {
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaList />
                                         <NavLink to="/dashboard/manage-items">Mange items</NavLink>
+                                    </li>
+                                    <li className='flex items-center gap-2 hover:text-white duration-150'>
+                                        <FaCartPlus />
+                                        <NavLink >My Cart ({cart.length})</NavLink>
                                     </li>
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaBook />

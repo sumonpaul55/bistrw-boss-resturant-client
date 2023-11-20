@@ -18,7 +18,7 @@ const UpdateItems = () => {
     const { name, category, recipe, price, _id } = items
 
     const onSubmit = async (data) => {
-        console.log("clicked")
+        // console.log("clicked")
         let menuItems = {
             name: data.name,
             price: data.price,
@@ -41,7 +41,7 @@ const UpdateItems = () => {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: `${name} is updated to the menu`,
+                title: `${data.name} is updated to the menu`,
                 showConfirmButton: false,
                 timer: 2000
             })

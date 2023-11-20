@@ -9,8 +9,9 @@ const Cart = () => {
     const axiosSecure = useAxios()
     const [cart, refetch] = useCart()
     const totalPrice = cart.reduce((accumolator, items) => {
-        return accumolator + items.price;
+        return accumolator + parseFloat(items.price);
     }, 0)
+    // console.log(typeof totalPrice)
     const handleDelete = id => {
         Swal.fire({
             title: "Are you sure?",
@@ -44,7 +45,7 @@ const Cart = () => {
             <PageTitle heading="---My Cart---" subHeading="WANNA ADD MORE?"></PageTitle>
             <div className='flex justify-between mt-4'>
                 <h3 className="text-3xl font-semibold uppercase">Total Orders: {cart?.length}</h3>
-                <h3 className="text-3xl font-semibold uppercase">Total price: {totalPrice.toFixed(2)}</h3>
+                <h3 className="text-3xl font-semibold uppercase">Total price: {totalPrice}</h3>
                 {
                     cart?.length ?
                         <Link to="/dashboard/payment-gateway">
