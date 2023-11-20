@@ -23,7 +23,7 @@ const Dashboard = () => {
                                 isAdmin ? <>
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaHome />
-                                        <NavLink to="dashboard/admin-home">Admin Home</NavLink>
+                                        <NavLink>Admin Home</NavLink>
                                     </li>
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaUtensils />
@@ -35,7 +35,7 @@ const Dashboard = () => {
                                     </li>
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaBook />
-                                        <NavLink to="/dashboard/add-reviews">Manage Bookings</NavLink>
+                                        <NavLink >Manage Bookings</NavLink>
                                     </li>
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaUser />
@@ -63,7 +63,7 @@ const Dashboard = () => {
                                         </li>
                                         <li className='flex items-center gap-2 hover:text-white duration-150'>
                                             <TbBookmarksFilled />
-                                            <NavLink to="">My Bookings</NavLink>
+                                            <NavLink>My Bookings</NavLink>
                                         </li>
                                     </>
                             }
