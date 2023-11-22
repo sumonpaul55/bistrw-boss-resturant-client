@@ -27,7 +27,7 @@ const Dashboard = () => {
                                 isAdmin ? <>
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaHome />
-                                        <NavLink>Admin Home</NavLink>
+                                        <NavLink to="/dashboard/AdminHome">Admin Home</NavLink>
                                     </li>
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaUtensils />
@@ -52,7 +52,7 @@ const Dashboard = () => {
                                     <>
                                         <li className='flex items-center gap-2 hover:text-white duration-150'>
                                             <FaHome />
-                                            <NavLink to="">User Home</NavLink>
+                                            <NavLink to="/dashboard/userHome">User Home</NavLink>
                                         </li>
                                         <li className='flex items-center gap-2 hover:text-white duration-150'>
                                             <GiOilDrum />

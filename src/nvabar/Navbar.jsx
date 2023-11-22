@@ -5,10 +5,12 @@ import { AuthContext } from '../provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { BsFillCartPlusFill } from "react-icons/bs"
 import useCarts from '../hooks/useCarts';
+import useAdmin from '../hooks/useAdmin';
 
 const Navbar = () => {
     const { user, loading, logOut } = useContext(AuthContext)
     const [cart] = useCarts();
+    const [isAdmin] = useAdmin();
     const handleLogout = () => {
         logOut()
             .then(() => {
@@ -21,6 +23,12 @@ const Navbar = () => {
         <li><Link className='hover:text-slate-500' to="/">Home</Link></li>
         <li><Link className='hover:text-slate-500' to="/menu">Menu</Link></li>
         <li><Link className='hover:text-slate-500' to={`/order/salad`}>Order Food</Link></li>
+        {
+            user && isAdmin && <li><Link className='hover:text-slate-500' to={`/dashboard/adminHome`}>Dashboard</Link></li>
+        }
+        {
+            user && !isAdmin && <li><Link className='hover:text-slate-500' to={`/dashboard/userHome`}>Dashboard</Link></li>
+        }
         <li>
             <Link to={`/dashboard/cart`} className='hover:bg-none hover:text-inherit'>
                 <button className="flex">

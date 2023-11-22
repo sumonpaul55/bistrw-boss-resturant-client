@@ -18,6 +18,8 @@ import MangaItems from "../pages/dashboard/manageItems/MangaItems";
 import UpdateItems from "../pages/dashboard/updateItems/UpdateItems";
 import Payment from "../pages/dashboard/payment/Payment";
 import PaymentHistory from "../pages/dashboard/paymentHistory/PaymentHistory";
+import AdminHome from "../pages/dashboard/adminHome/AdminHome";
+import UserHome from "../pages/dashboard/userHome/UserHome";
 const routers = createBrowserRouter([
     {
         path: "/",
@@ -50,6 +52,14 @@ const routers = createBrowserRouter([
         element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
         children: [
             // normal users route
+            {
+                path: "AdminHome",
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
+            {
+                path: "userHome",
+                element: <UserHome></UserHome>
+            },
             {
                 path: "cart",
                 element: <Cart></Cart>
