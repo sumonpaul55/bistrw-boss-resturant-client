@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageTitle from '../../shared/PageTitle';
 import { useLoaderData } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
@@ -10,22 +10,30 @@ import Swal from 'sweetalert2';
 
 const image_apikey = import.meta.env.VITE_IMAGE_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_apikey}`
+
 const UpdateItems = () => {
+    const items = useLoaderData();
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxios()
+
     const { register, handleSubmit, reset } = useForm()
-    const items = useLoaderData();
-    const { name, category, recipe, price, _id } = items
+    const { _id } = items
+
+    useEffect(() => {
+        if (items) {
+            reset(items)
+        }
+    }, [items, reset])
 
     const onSubmit = async (data) => {
-        // console.log("clicked")
         let menuItems = {
             name: data.name,
             price: data.price,
             category: data.category,
-            recipe: data.recipe,
+            recipe: data.recipe
         }
-        if (data.image.length > 0) {
+
+        if (typeof data.image !== "string" && data.image.length > 0) {
             // image upload to imgbb and then get an url
             const imageFile = { image: data.image[0] }
             const res = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -36,6 +44,7 @@ const UpdateItems = () => {
                 // send data the menu items with the imgae url
             }
         }
+
         const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItems)
         if (menuRes.data.modifiedCount > 0) {
             Swal.fire({
@@ -45,11 +54,8 @@ const UpdateItems = () => {
                 showConfirmButton: false,
                 timer: 2000
             })
-            reset()
         }
     }
-
-
 
     return (
         <div>
@@ -60,14 +66,14 @@ const UpdateItems = () => {
                         <label className="label">
                             <span className="label-text">Recipe name*</span>
                         </label>
-                        <input type="text" defaultValue={name} {...register("recipe", { required: true })} placeholder="Type here" className="input input-bordered w-full p-2" />
+                        <input type="text" {...register("name", { required: true })} placeholder="Type here" className="input input-bordered w-full p-2" />
                     </div>
                     <div className='mt-5 flex flex-col md:flex-row gap-4 items-center'>
                         <div className="form-control w-full">
                             <label className="label">
                                 Category*
                             </label>
-                            <select className="select select-bordered" defaultValue={category} {...register("category", { required: true })}>
+                            <select className="select select-bordered" {...register("category", { required: true })}>
                                 <option value="">Select a Category</option>
                                 <option value="salad">salad</option>
                                 <option value="pizza">Pizza</option>
@@ -80,14 +86,14 @@ const UpdateItems = () => {
                             <label className="label">
                                 <span className="label-text">Price*</span>
                             </label>
-                            <input type="number" defaultValue={price} {...register("price", { required: true })} placeholder="Type here" className="input input-bordered w-full p-2" />
+                            <input type="number"  {...register("price", { required: true })} placeholder="Type here" className="input input-bordered w-full p-2" />
                         </div>
                     </div>
                     <div className="form-control w-full mt-4">
                         <label className="label">
                             <span className="label-text">Recipe Details*</span>
                         </label>
-                        <textarea defaultValue={recipe} {...register("recipe", { required: true })} rows="6" className="input-bordered w-full rounded-lg p-3 border"></textarea>
+                        <textarea {...register("recipe", { required: true })} rows="6" className="input-bordered w-full rounded-lg p-3 border"></textarea>
                     </div>
                     <div className="form-control w-full mt-4">
                         <label className="label">

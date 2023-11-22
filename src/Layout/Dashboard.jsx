@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaHome, FaCartArrowDown, FaEnvelope, FaUtensils, FaList, FaUser, FaBook, FaCaretRight, FaCartPlus } from "react-icons/fa";
+import { FaHome, FaCartArrowDown, FaEnvelope, FaUtensils, FaList, FaUser, FaBook, FaCartPlus } from "react-icons/fa";
 import { GiOilDrum } from "react-icons/gi";
 import { SiCodereview } from "react-icons/si";
 import { TbBookmarksFilled } from "react-icons/tb";
 import { BiFoodMenu } from "react-icons/bi";
 import "./dashboard.css"
 import useAdmin from '../hooks/useAdmin';
-import Cart from '../components/dashboard/cart/Cart';
+// import Cart from '../components/dashboard/cart/Cart';
 import useCarts from '../hooks/useCarts';
 
 const Dashboard = () => {
@@ -37,10 +37,7 @@ const Dashboard = () => {
                                         <FaList />
                                         <NavLink to="/dashboard/manage-items">Mange items</NavLink>
                                     </li>
-                                    <li className='flex items-center gap-2 hover:text-white duration-150'>
-                                        <FaCartPlus />
-                                        <NavLink >My Cart ({cart.length})</NavLink>
-                                    </li>
+
                                     <li className='flex items-center gap-2 hover:text-white duration-150'>
                                         <FaBook />
                                         <NavLink >Manage Bookings</NavLink>
@@ -59,11 +56,11 @@ const Dashboard = () => {
                                         </li>
                                         <li className='flex items-center gap-2 hover:text-white duration-150'>
                                             <GiOilDrum />
-                                            <NavLink to="">Reservation</NavLink>
+                                            <NavLink to="/dashboard/PaymentHistory">Reservation</NavLink>
                                         </li>
                                         <li className='flex items-center gap-2 hover:text-white duration-150'>
-                                            <FaCartArrowDown />
-                                            <NavLink to="">My Cart</NavLink>
+                                            <FaCartPlus />
+                                            <NavLink to="/dashboard/cart">My Cart ({cart.length})</NavLink>
                                         </li>
                                         <li className='flex items-center gap-2 hover:text-white duration-150'>
                                             <SiCodereview />
@@ -73,6 +70,10 @@ const Dashboard = () => {
                                             <TbBookmarksFilled />
                                             <NavLink>My Bookings</NavLink>
                                         </li>
+                                        <li className='flex items-center gap-2 hover:text-white duration-150'>
+                                            <BiFoodMenu />
+                                            <NavLink to="/dashboard/paymentHistory">Payment Real History</NavLink>
+                                        </li>
                                     </>
                             }
                             {/* shared navlinks */}
@@ -80,6 +81,10 @@ const Dashboard = () => {
                             <li className='flex items-center gap-2 hover:text-white duration-150'>
                                 <FaCartArrowDown />
                                 <NavLink to="/">Home</NavLink>
+                            </li>
+                            <li className='flex items-center gap-2 hover:text-white duration-150'>
+                                <BiFoodMenu />
+                                <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>
                             </li>
                             <li className='flex items-center gap-2 hover:text-white duration-150'>
                                 <BiFoodMenu />

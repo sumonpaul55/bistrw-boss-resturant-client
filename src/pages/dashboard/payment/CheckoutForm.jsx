@@ -3,28 +3,31 @@ import React, { useEffect, useState } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import useCarts from '../../../hooks/useCarts';
 import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 const CheckoutForm = () => {
     const [error, setError] = useState("")
     const stripe = useStripe()
     const elements = useElements()
     const axiosSecure = useAxios()
-    const [cart] = useCarts()
+    const [cart, refetch] = useCarts()
     const [clientSecret, setClientSecret] = useState("")
     const { user } = useAuth()
     const [transactionid, setTransactionId] = useState('')
+    const navigate = useNavigate();
     // console.log(user)
 
-    const totalPrice = cart.reduce((accumolator, items) => {
-        return accumolator + items.price;
-    }, 0)
+    const totalPrice = cart.reduce((accumolator, item) => accumolator + parseFloat(item.price), 0)
+
     useEffect(() => {
-        axiosSecure.post(`/create-payment-intent`, { price: totalPrice })
-            .then(res => {
-                console.log(res.data.clientSecret)
-                setClientSecret(res.data.clientSecret)
-            })
+        if (totalPrice > 0) {
+            axiosSecure.post(`/create-payment-intent`, { price: totalPrice })
+                .then(res => {
+                    // console.log(res.data.clientSecret)
+                    setClientSecret(res?.data?.clientSecret)
+                })
+        }
     }, [axiosSecure, totalPrice])
-    // console.log(clientSecret)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -45,8 +48,10 @@ const CheckoutForm = () => {
             // console.log("error =", error)
             setError(error.message)
         } else {
-            console.log("paymentMethod", paymentMethod)
-            setError("")
+            // console.log("paymentMethod", paymentMethod.id)
+            if (paymentMethod.id) {
+                setError("")
+            }
         }
         // confirm payment
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
@@ -57,9 +62,13 @@ const CheckoutForm = () => {
                     name: user?.displayName || "anonymous"
                 }
             }
+
         })
         if (confirmError) {
-            console.log(confirmError)
+            Swal.fire({
+                title: `${confirmError}`,
+                position: "top-right"
+            })
         }
         else {
             // console.log("paymentIntend", paymentIntent)
@@ -77,7 +86,15 @@ const CheckoutForm = () => {
                     status: "pending"
                 }
                 const res = await axiosSecure.post("/payment", payment)
-                console.log(res.data)
+                if (res.data?.paymentResult?.insertedId) {
+                    Swal.fire({
+                        title: `Thanks, Your Payment has been Successfull`,
+                        position: "top-right",
+                        timer: 2000
+                    })
+                    navigate("/dashboard/paymentHistory")
+                    refetch()
+                }
             }
         }
     }
@@ -95,7 +112,7 @@ const CheckoutForm = () => {
             }}
             />
             <button type="submit" className='btn mt-6 btn-secondary' disabled={!stripe || !clientSecret}>
-                Pay
+                {`Pay $${totalPrice}`}
             </button>
             <p className='text-red-600'>{error}</p>
             {
