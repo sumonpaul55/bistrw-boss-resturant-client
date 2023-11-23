@@ -88,7 +88,7 @@ const routers = createBrowserRouter([
             {
                 path: "updateItems/:id",
                 // https://bistrow-boss-server-kqtazrfgq-sumonpaul55s-projects.vercel.app/
-                loader: ({ params }) => fetch(`http://localhost:5000/updateItems/${params.id}`),
+                loader: ({ params }) => fetch(`https://bistrow-boss-server-kqtazrfgq-sumonpaul55s-projects.vercel.app/updateItems/${params.id}`),
                 element: <AdminRoute><UpdateItems></UpdateItems></AdminRoute>
             }
         ]

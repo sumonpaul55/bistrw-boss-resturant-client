@@ -16,7 +16,7 @@ const Testimonial = () => {
 
     useEffect(() => {
         // https://bistrow-boss-server-kqtazrfgq-sumonpaul55s-projects.vercel.app/
-        fetch("http://localhost:5000/reviews")
+        fetch("https://bistrow-boss-server-kqtazrfgq-sumonpaul55s-projects.vercel.app/reviews")
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
 import { useEffect } from 'react';
-const url = "http://localhost:5000"
+const url = "https://bistrow-boss-server-kqtazrfgq-sumonpaul55s-projects.vercel.app/"
 // https://bistrow-boss-server-kqtazrfgq-sumonpaul55s-projects.vercel.app/
 const axiosSecure = axios.create({
     baseURL: url,
