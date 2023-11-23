@@ -15,6 +15,7 @@ const Testimonial = () => {
     const [rating, setRating] = useState(4) // Initial value
 
     useEffect(() => {
+        // https://bistrow-boss-server-kqtazrfgq-sumonpaul55s-projects.vercel.app/
         fetch("http://localhost:5000/reviews")
             .then(res => res.json())
             .then(data => setReviews(data))

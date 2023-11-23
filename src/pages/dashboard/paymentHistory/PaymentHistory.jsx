@@ -12,7 +12,7 @@ const PaymentHistory = () => {
             return res.data
         }
     })
-    console.log(payment)
+    // console.log(payment)
     return (
         <main>
             <div className="container mx-auto">
