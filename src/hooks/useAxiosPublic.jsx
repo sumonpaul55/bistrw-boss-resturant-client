@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const url = "http://localhost:5000"
+const url = "https://bistrow-boss-server-kqtazrfgq-sumonpaul55s-projects.vercel.app"
 const axiosPublic = axios.create({
     baseURL: url,
 
