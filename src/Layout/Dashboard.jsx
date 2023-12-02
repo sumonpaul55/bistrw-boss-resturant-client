@@ -14,6 +14,7 @@ const Dashboard = () => {
     //TODO: get isadmin value from the database
     const [isAdmin] = useAdmin();
     const [cart] = useCarts()
+    console.log("admin", isAdmin)
 
 
     return (

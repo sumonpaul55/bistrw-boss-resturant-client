@@ -37,7 +37,6 @@ const FoodCard = ({ FoodCardData }) => {
                         position: "bottom-center"
                     })
                 })
-
         }
         else {
             Swal.fire({

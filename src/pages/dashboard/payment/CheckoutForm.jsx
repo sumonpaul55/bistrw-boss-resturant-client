@@ -18,7 +18,6 @@ const CheckoutForm = () => {
     // console.log(user)
 
     const totalPrice = cart.reduce((accumolator, item) => accumolator + parseFloat(item.price), 0)
-
     useEffect(() => {
         if (totalPrice > 0) {
             axiosSecure.post(`/create-payment-intent`, { price: totalPrice })
@@ -28,10 +27,8 @@ const CheckoutForm = () => {
                 })
         }
     }, [axiosSecure, totalPrice])
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         if (!stripe || !elements) {
             return
         }
@@ -62,7 +59,6 @@ const CheckoutForm = () => {
                     name: user?.displayName || "anonymous"
                 }
             }
-
         })
         if (confirmError) {
             Swal.fire({
@@ -109,8 +105,7 @@ const CheckoutForm = () => {
                         color: "#9e2146"
                     }
                 }
-            }}
-            />
+            }} />
             <button type="submit" className='btn mt-6 btn-secondary' disabled={!stripe || !clientSecret}>
                 {`Pay $${totalPrice}`}
             </button>
@@ -121,5 +116,4 @@ const CheckoutForm = () => {
         </form>
     );
 };
-
 export default CheckoutForm;
